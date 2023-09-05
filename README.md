@@ -16,3 +16,5 @@ A project to collect noise information from flights over a particular location a
 * [send_observation_to_cloud.py](send_observation_to_cloud.py) - Takes obervation data (currently hardcoded) and publishes a Pubsub message to a topic that is linked to a BigQuery export subscription
 
 * [noise-logger-data-schema.avsc](noise-logger-data-schema.avsc) - Avro schema file specifying the table structure for storing observation data
+
+* [requirements.txt](requirements.txt) - Python libraries necessary to authenticate to GCP and publish Pubsub messages
