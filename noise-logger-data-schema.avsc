@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "name": "Avro",
+  "fields": [
+    {
+      "name": "reporting_station",
+      "type": "string"
+    },
+    {
+      "name": "reporting_timestamp",
+      "type": "string"
+    },
+    {
+      "name": "db_report",
+      "type": "float"
+    }
+  ]
+}
