@@ -12,7 +12,7 @@ def report_db_level():
 
 
 def main():
-	while 1==1:
+	for i in range(100):
 		current_timestamp, recorded_db = report_db_level()
 		print("{}|{}".format(current_timestamp, recorded_db))
 
