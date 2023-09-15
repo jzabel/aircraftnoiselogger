@@ -1,32 +1,20 @@
-import time
-import sched
-import pigpio
+import smbus
+
+
+def report_db_level():
+	device_bus = 1
+	device_addr = 0x48
+	bus_handler = smbus.SMBus(device_bus)
+	recorded_db = bus_handler.read_byte_data(device_addr, 0x0A)
+	current_timestamp = str(datetime.datetime.now())
+
+	return current_timestamp, recorded_db
+
 
 def main():
-
-	#Entering main script
-
-	#Enable reading of bus and create handle
-	h = pi.i2c_open(0, 0x48) #open device at address 0x48 on bus 0
-	#Try a first read
-	first_db = pi.i2c_read_byte_data(h, 0x0A)
-	print ("First db is" + first_db)
-
-
-	#Set up scheduler to read each second
-	def read_db(scheduler);
-		#schedule the first call
-		scheduler.enter(1, 1 read_db, (scheduler,))
-		print("Start reading sound levels")
-		#Execute the sound buffer reads
-		db = pi.i2c_read_byte_data(h, 0x0A)
-		print ("db is" + first_db)
-
-
-#Execute/schedule 1 second sound readings
-scheduled_sound_read=sched.scheduler(time.time, time.sleep)
-scheduled_sound_read.enter(1, 1, read_db, (scheduled_sound_read,))
-scheduled_sound_read.run()
+	while 1==1:
+		current_timestamp, recorded_db = report_db_level()
+		print("{}|{}".format(current_timestamp, recorded_db))
 
 
 if __name__ == "__main__":
