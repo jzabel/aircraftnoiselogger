@@ -59,19 +59,17 @@ def read_db(scheduler):
 
 def main():
 	try:
-		try:
-			while 1==1:
-				print ("Starting up")
+		while 1==1:
+			print ("Starting up")
 
-				#Execute/schedule 1 second sound readings
-				scheduled_sound_read=sched.scheduler(time.time, time.sleep)
-				scheduled_sound_read.enter(1, 1, read_db, (scheduled_sound_read,))
-				print("Start reading sound levels")
-				scheduled_sound_read.run()
-		except:
-	 		print("encountered an issue - not publishing")
-	except KeyboardInterrupt:
-		print("Breaking out...")
+			#Execute/schedule 1 second sound readings
+			scheduled_sound_read=sched.scheduler(time.time, time.sleep)
+			scheduled_sound_read.enter(1, 1, read_db, (scheduled_sound_read,))
+			print("Start reading sound levels")
+			scheduled_sound_read.run()
+			
+	except:
+ 		print("encountered an issue - not publishing")
 
 
 if __name__ == "__main__":
