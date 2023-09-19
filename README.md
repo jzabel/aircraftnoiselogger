@@ -30,6 +30,8 @@ A project to collect noise information from flights over a particular location a
 
 ## Usage
 
+See: [ACCURATE RASPBERRY PI DECIBEL METER](https://pcbartists.com/product-documentation/accurate-raspberry-pi-decibel-meter/)
+
 ### Proof of Concept Code Snippets
 
 * [monitor_audio.sh](monitor_audio.sh) - Bash file to access a USB mic and check the root mean square dB level
@@ -72,6 +74,6 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 [TODO]
 
-* []()
+* [ACCURATE RASPBERRY PI DECIBEL METER](https://pcbartists.com/product-documentation/accurate-raspberry-pi-decibel-meter/)
 * []()
 * []()
