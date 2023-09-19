@@ -36,7 +36,7 @@ For high quality, print at a layer height of .12.
 
 - Using the 2x M4 screws, mount the lid to an ideal outdoor location
 
-**Mount base to lid**
+### Mount base to lid
 
 - Snap the enclosure base into the enclosure lid.
 
