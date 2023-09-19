@@ -74,6 +74,6 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 [TODO]
 
-* [ACCURATE RASPBERRY PI DECIBEL METER](https://pcbartists.com/product-documentation/accurate-raspberry-pi-decibel-meter/)
+* []()
 * []()
 * []()
