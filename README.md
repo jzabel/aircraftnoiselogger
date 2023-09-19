@@ -17,6 +17,7 @@ A project to collect noise information from flights over a particular location a
 **Hardware**
 
 - Raspberry Pi Zero 2 W
+- 5 volt 2 amp power supply
 - [I2C Decibel Sound Level Meter Module](https://pcbartists.com/product/i2c-decibel-sound-level-meter-module/)
 - 3D printed [Enclosure](Enclosure/README.md)
 
