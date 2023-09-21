@@ -6,9 +6,12 @@ A project to collect noise information from flights over a particular location a
 
 ### Prerequisites
 
+It's recommended that you have some experience with Raspberry Pi and a basic understanding of loading packages and running Python scripts.
+
 **Hardware**
 
 - Raspberry Pi Zero 2 W or similar
+- Micro SD card (16GB minimum, 32GB recommended)
 - 5 volt 2 amp power supply
 - [I2C Decibel Sound Level Meter Module](https://pcbartists.com/product/i2c-decibel-sound-level-meter-module/)
 - 3D printed [Enclosure](Enclosure/README.md)
@@ -25,16 +28,32 @@ A project to collect noise information from flights over a particular location a
 
 **Raspberry Pi Setup**
 * Create the base operating system using the current version of Raspberry Pi OS (previously Raspbian). Raspberry Pi OS with desktop works great (although is overkill). At development time, we used Kernel 6.1, Debian version 11 (bullseye). [Details on installing here](https://www.raspberrypi.com/software/)
-* Once booted, you need to load libraries and requirements. 
-	* Update current libraries running `apt-get update` & `apt-get upgrade`
-	* Copy code from this repo into a directory of your choice on the Pi
-	* Make sure to set up a virtual env
-		```
-		pip3 install virtualenv=
-		virtualenv <your-env>
-		source <your-env>/bin/activate
-		```
-	* Install required libraries run `pip3 install -r requirements.txt`.
+
+**NOTE:** We recommend installing the "Raspberry Pi OS Lite (32 bit)" image.
+
+Once booted, you need to load libraries and requirements.
+
+### Loading libraries and requirements
+* Update current libraries running `sudo apt-get update` & `sudo apt-get upgrade`
+* Make sure `pip3` is installed.  If not use the command: `sudo apt-get install python3-pip`
+* Copy code from this repo into the home `~/` directory of your Pi:
+    * From a terminal use the following
+        - Get the files from the repository: `wget -P ~/ "https://github.com/jzabel/aircraftnoiselogger/archive/master.zip"`
+        - Unpack the files into a directory: `unzip master.zip -d aircraftnoiselogger`
+* Make sure to set up a virtual environment where `<your-env>` is an environment value you set like `aircraft-logger-env`.
+    ```
+    sudo pip3 install virtualenv
+    virtualenv <your-env>
+    source <your-env>/bin/activate
+    ```
+
+    _example:_
+    ```
+    sudo pip3 install virtualenv
+    virtualenv aircraft-logger-env 
+    source aircraft-logger-env/bin/activate
+    ```
+* Install required libraries run `pip3 install -r requirements.txt`.
 * Change the location of your google auth.json key in run_db_monitoring.py 
 
 **Connect PCB Artist Sound Level Board**
