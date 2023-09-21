@@ -34,30 +34,44 @@ It's recommended that you have some experience with Raspberry Pi and a basic und
 Once booted, you need to load libraries and requirements.
 
 ### Loading libraries and requirements
-* Update current libraries running `sudo apt-get update` & `sudo apt-get upgrade`
-* Make sure `pip3` is installed.  If not use the command: `sudo apt-get install python3-pip`
-* Copy code from this repo into the home `~/` directory of your Pi:
-    * From a terminal use the following
-        - Get the files from the repository: `wget -P ~/ "https://github.com/jzabel/aircraftnoiselogger/archive/master.zip"`
-        - Unpack the files into a directory: `unzip master.zip -d aircraftnoiselogger`
-* Make sure to set up a virtual environment where `<your-env>` is an environment value you set like `aircraft-logger-env`.
-    ```
-    sudo pip3 install virtualenv
-    virtualenv <your-env>
-    source <your-env>/bin/activate
-    ```
+#### Update current libraries:
+Run `sudo apt-get update && sudo apt-get upgrade`
 
-    _example:_
-    ```
-    sudo pip3 install virtualenv
-    virtualenv aircraft-logger-env 
-    source aircraft-logger-env/bin/activate
-    ```
-* Install required libraries run `pip3 install -r requirements.txt`.
+#### Enable the I2C interface
+See: [Enable I2C Interface on the Raspberry Pi](https://www.raspberrypi-spy.co.uk/2014/11/enabling-the-i2c-interface-on-the-raspberry-pi/)
+
+#### Make sure `pip3` is installed.  
+If not use the command: `sudo apt-get install python3-pip`
+
+#### Download code from repo
+Copy code from this repo into the home `~/` directory of your Pi:
+* From a terminal use the following
+    - Get the files from the repository: `wget -P ~/ "https://github.com/jzabel/aircraftnoiselogger/archive/master.zip"`
+    - Unpack the files into a directory: `unzip master.zip -d aircraftnoiselogger`
+
+#### Setup a virtual environment
+Make sure to set up a virtual environment where `<your-env>` is an environment value you set like `aircraft-logger-env`.
+
+```
+sudo pip3 install virtualenv
+virtualenv <your-env>
+source <your-env>/bin/activate
+```
+
+_example:_
+    
+```
+sudo pip3 install virtualenv
+virtualenv aircraft-logger-env 
+source aircraft-logger-env/bin/activate
+```
+
+
+* Install required libraries run `sudo pip3 install -r requirements.txt`.
 * Change the location of your google auth.json key in run_db_monitoring.py 
 
-**Connect PCB Artist Sound Level Board**
-* Connect the board to the appropriate pins on the Raspberry Pi. [See directions here](https://pcbartists.com/product-documentation/accurate-raspberry-pi-decibel-meter/#connect-decibel-sensor-with-raspberry-pi)
+### Connect PCB Artist Sound Level Board
+Connect the board to the appropriate pins on the Raspberry Pi. [See directions here](https://pcbartists.com/product-documentation/accurate-raspberry-pi-decibel-meter/#connect-decibel-sensor-with-raspberry-pi)
 
 ## Usage
 * Start the noise meter process on your Pi to run in the background: `nohup python3 run_db_monitoring.py &`
