@@ -76,6 +76,65 @@ Connect the board to the appropriate pins on the Raspberry Pi. [See directions h
 ## Usage
 * Start the noise meter process on your Pi to run in the background: `nohup python3 run_db_monitoring.py &`
 
+## Running the logger as a service on your Pi
+
+The following instructions will configure your Raspberry Pi to run the `run_db_monitoring.py` script as a service.  This service will automatically run as soon as you boot your device.
+
+**_NOTE_**: This configuration assumes you have configured everything above and your `run_db_monitoring.py` script is in the home directory of the `pi` user in the extracted folder named `aircraftnoiselogger`.
+
+### 1. Create a systemd service unit file:
+
+Create a new .service file named `aircraftnoiselogger_script.service`, in the `/etc/systemd/system/` directory:
+
+```
+sudo nano /etc/systemd/system/aircraftnoiselogger_script.service
+```
+
+### 2. Add the following content to the service unit file:
+
+```
+[Unit]
+Description=Aircraft Noise Logging Python Script Service
+After=network.target
+
+[Service]
+ExecStart=/home/pi/aircraftnoiselogger/aircraft-logger-env/bin/python3 /home/pi/aircraftnoiselogger/run_db_monitoring.py
+WorkingDirectory=/home/pi/aircraftnoiselogger
+Restart=always
+User=pi
+Environment=PATH=/home/pi/aircraftnoiselogger/aircraft-logger-env/bin
+Environment=PYTHONPATH=/home/pi/aircraftnoiselogger
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Save the file and exit the text editor (in Nano, press `Ctrl+O`, then Enter, and `Ctrl+X`).
+
+### 4. Reload systemd to read the new service file:
+
+```
+sudo systemctl daemon-reload
+```
+
+### 5. Enable the service to start on boot:
+
+```
+sudo systemctl enable aircraftnoiselogger_script.service
+```
+
+### 6. Start the service:
+
+```
+sudo systemctl start aircraftnoiselogger_script.service
+```
+
+To check the status of your service and see if it's running without errors, you can use:
+
+```
+sudo systemctl status aircraftnoiselogger_script.service
+```
+
 ### TODO:
 * Add configuration file for google auth and other params (e.g. location of sensors)
 * Add cron setup to automatically start reading
