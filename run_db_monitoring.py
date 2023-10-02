@@ -50,7 +50,7 @@ def read_db(scheduler):
 	#schedule the first call
 	scheduler.enter(1, 1, read_db, (scheduler,))
 
-	print ("db is " + str(recorded_db) + ' @ ' + current_timestamp)
+	#print ("db is " + str(recorded_db) + ' @ ' + current_timestamp)
 
 	reporting_obj = {
 		"reporting_station": reporting_station,
