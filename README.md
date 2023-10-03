@@ -24,6 +24,7 @@ Here are questions we wish to answer and visualize with this information. Github
 3. [Noise impact by type of plane and altitude at various measurement points and/or by altitude](https://github.com/jzabel/aircraftnoiselogger/issues/13)
 4. [Planes flying below 500ft over the residential area](https://github.com/jzabel/aircraftnoiselogger/issues/14)
 5. [Planes louder than 60dB over the residential area (frequency, largest impacts, etc.)](https://github.com/jzabel/aircraftnoiselogger/issues/15)
+6. [Generate FAA DNL style measurements using actual data](https://github.com/jzabel/aircraftnoiselogger/issues/16)
 
 Please reach out via an issue to access project data and cloud environment.
 
