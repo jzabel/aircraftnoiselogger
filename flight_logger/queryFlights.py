@@ -15,7 +15,7 @@ pubsub_topic = "opensky-state-vector-ingest"
 baseURL = "https://opensky-network.org/api"
 ownStates = "/states/own"
 username ="jzabel"
-pw = "oDwh9emrfDzBz"
+pw = "xxxx"
 
 opensky_state_keys = [
 	"icao24",
