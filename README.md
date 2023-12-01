@@ -18,20 +18,28 @@ In the aircraft_reporting_dataset, each aircraft entering the zone of interest i
 A third table stores callsign ("N number") data, plane type, registrant information, etc.
 
 ### Questions to answer
-Here are questions we wish to answer and visualize with this information. Github issues have been created for each. Each response should attempt to detail date/time, plane (callsign), type of aircraft, db impact, and geo_altitude. Please use the Github issue to coordinate answering them:
-1. [Number of Flights over Rock Creek Superior by callsign each day with corresponding noise impact.](https://github.com/jzabel/aircraftnoiselogger/issues/11)
-2. [Total number of touch and go operations by plane and by time/date.](https://github.com/jzabel/aircraftnoiselogger/issues/12)
-3. [Noise impact by type of plane and altitude at various measurement points and/or by altitude](https://github.com/jzabel/aircraftnoiselogger/issues/13)
-4. [Planes flying below 500ft over the residential area](https://github.com/jzabel/aircraftnoiselogger/issues/14)
-5. [Planes louder than 60dB over the residential area (frequency, largest impacts, etc.)](https://github.com/jzabel/aircraftnoiselogger/issues/15)
-6. [Generate FAA DNL style measurements using actual data](https://github.com/jzabel/aircraftnoiselogger/issues/16)
+Here are the type of questions we are able to answer and visualize with this information. Github issues have been created for each. Each response should attempt to detail date/time, plane (callsign), type of aircraft, db impact, and geo_altitude. Please use the Github issue to coordinate answering them:
+1. Number of Flights over Rock Creek Superior by callsign each day with corresponding noise impact.
+2. Total number of touch and go operations by plane and by time/date.
+3. Noise impact by type of plane and altitude at various measurement points and/or by altitude
+4. Planes flying below 500ft over the residential area
+5. Planes louder than 60dB over the residential area (frequency, largest impacts, etc.)
 
 Please reach out via an issue to access project data and cloud environment.
+
+## Noise Capture Information
+We create a series of noise sensors that log decible levels at 1Hz and send the information back to Google Cloud. The sensors are designed to be run off inexpensive consumer grade hardware including a Raspberry Pi for general processing and connectivity, but purchasing a specifically designed I2C Decibel Sound Level Meter Module for sound processing. This module is calibrated and allows configuration for A-weighted response, averaging time between 125ms and 1000ms, etc. allowing us to exactly match FAA sensing requirements. We deploy each sensor across the neighborhood at various points and are able to log and analyze the data they produce. Our sensors have been running since September 21, 2023.
+
+The loggers are placed outside and can be attached to surfaces by their enclosure. Here are pictures of our sensors:
+![Logger attached to house](https://github.com/jzabel/aircraftnoiselogger/tree/main/Enclosure/Logger_on_house.jpg)
+![Logger internals](https://github.com/jzabel/aircraftnoiselogger/tree/main/Enclosure/logger_inside.jpg)
+![Logger enclosure](https://github.com/jzabel/aircraftnoiselogger/tree/main/Enclosure/logger_closed.jpg)
 
 ## Flight Capture Information
 To capture flight data, we ultimately decided on a hybrid approach between directly capturing ADSB messages and easier access of an API-based solution. After some digging, we decided to create one central server to publish flight information to a centralized database which all clients, analysts, etc. can access as the truth for plane overflights. To do so, we created multiple Raspberry Pi receivers in the area to capture ADSB messages via Dump1090 and then publish them to the OpenSky API. We have a few in the area, but ultimately only need one to two with good positions / antenna. 
 
 These PIs are responsible for sending ADSB messages to OpenSky. When testing messages, we saw about 1.9M messages in 3 hours from ADSB in our area. As such, relying on OpenSky to consolidate, fill in, update, etc. is very helpful. Because we contribute to OpenSky API, we get increased call limits and we can call data from our own sensors without limits.
+** Update - we are currently evaluting alternatives due to poor reliability and uptime from OpenSky Service since mid-November.
 
 As such, one of the Raspberry Pi units is responsible for calling OpenSkyAPI to retrieve flights our ADSB sensors is measuring, do some filtering to include only those in the region of interest, and then publish to our database for analysis.
 
