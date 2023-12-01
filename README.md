@@ -31,9 +31,9 @@ Please reach out via an issue to access project data and cloud environment.
 We create a series of noise sensors that log decible levels at 1Hz and send the information back to Google Cloud. The sensors are designed to be run off inexpensive consumer grade hardware including a Raspberry Pi for general processing and connectivity, but purchasing a specifically designed I2C Decibel Sound Level Meter Module for sound processing. This module is calibrated and allows configuration for A-weighted response, averaging time between 125ms and 1000ms, etc. allowing us to exactly match FAA sensing requirements. We deploy each sensor across the neighborhood at various points and are able to log and analyze the data they produce. Our sensors have been running since September 21, 2023.
 
 The loggers are placed outside and can be attached to surfaces by their enclosure. Here are pictures of our sensors:
-![Logger attached to house](https://github.com/jzabel/aircraftnoiselogger/tree/main/Enclosure/Logger_on_house.jpg)
-![Logger internals](https://github.com/jzabel/aircraftnoiselogger/tree/main/Enclosure/logger_inside.jpg)
-![Logger enclosure](https://github.com/jzabel/aircraftnoiselogger/tree/main/Enclosure/logger_closed.jpg)
+![Logger attached to house](https://github.com/jzabel/aircraftnoiselogger/blob/main/Enclosure/Logger_on_house.jpg)
+![Logger internals](https://github.com/jzabel/aircraftnoiselogger/blob/main/Enclosure/logger_inside.jpg)
+![Logger enclosure](https://github.com/jzabel/aircraftnoiselogger/blob/main/Enclosure/logger_closed.jpg)
 
 ## Flight Capture Information
 To capture flight data, we ultimately decided on a hybrid approach between directly capturing ADSB messages and easier access of an API-based solution. After some digging, we decided to create one central server to publish flight information to a centralized database which all clients, analysts, etc. can access as the truth for plane overflights. To do so, we created multiple Raspberry Pi receivers in the area to capture ADSB messages via Dump1090 and then publish them to the OpenSky API. We have a few in the area, but ultimately only need one to two with good positions / antenna. 
