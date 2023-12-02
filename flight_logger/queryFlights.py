@@ -7,7 +7,8 @@ from google.cloud import pubsub_v1
 from google.oauth2 import service_account
 
 credentials_obj = service_account.Credentials.from_service_account_file(
-	"../superior-noise-loggers-daa6617f2476.json"
+	#Modify for pubsub key location
+	#"../superior-noise-loggers.json"
 )
 
 project_id = "superior-noise-loggers"
@@ -15,7 +16,8 @@ pubsub_topic = "opensky-state-vector-ingest"
 baseURL = "https://opensky-network.org/api"
 ownStates = "/states/own"
 username ="jzabel"
-pw = "xxxx"
+#Modify below to put in opensky password
+pw = "replacePasswordHere"
 
 opensky_state_keys = [
 	"icao24",
@@ -75,16 +77,15 @@ def opensky_api(call):
 	if r.status_code == 200:
 		return r.json()
 	else:
-		logger.debug(
-			"Response not OK. Status {0:d} - {1:s}".format(r.status_code, r.reason)
-		)
+			print("Response not OK. Status {0:d} - {1:s}".format(r.status_code, r.reason))
+
 	return None
 
 def publish_flight(flight):
 	for keys in flight:
 		flight[keys] = str(flight[keys])
 
-	print(flight)
+	#print(flight)
 
 	publisher_client = pubsub_v1.PublisherClient(credentials = credentials_obj)
 
@@ -98,7 +99,7 @@ def publish_flight(flight):
 		pubsub_topic_path,
 		json.dumps(flight).encode("utf-8")
  	)
-	print(json.dumps(flight))
+	#print(json.dumps(flight))
 
 	async_future.result()
 
@@ -110,28 +111,12 @@ def process_local_flights(states):
 
 	planes = 0
 	ignored_planes = 0
-	'''
-	if(states is not None):
-		for state in states.states:
-			if(state.longitude is not None and state.longitude is not None and state.geo_altitude is not None):
-				if (state.longitude < -105.076992 and state.longitude > -105.165851 and 
-					state.latitude > 39.873575 and state.latitude < 39.946902 and
-					state.geo_altitude < 7500):
-					local_planes.append(state)
-				#else:
-					#print ('plane not local')
-					#print(state)
-					#states.remove(state)
 
-	#publish flights
-	publish_flights(local_planes)
-	'''
-	if(states is not None):
+	if(states['states'] is not None):
 		for state in states['states']:
 			# Add keys into new json string
 			plane_dict = {k:v for k,v in zip(opensky_state_keys, state)}
 			plane_dict['sensors'] = '"' + str(plane_dict['sensors']) + '"'
-			#publish_flight(plane_dict)
 
 			#Now filter out for just our region
 			if(plane_dict['longitude'] is not None and plane_dict['latitude'] is not None and plane_dict['geo_altitude'] is not None):
@@ -139,15 +124,14 @@ def process_local_flights(states):
 					plane_dict['latitude']  > 39.873575 and plane_dict['latitude']  < 39.946902 and
 					plane_dict['geo_altitude'] < 7500):
 					#Since all conditions are true we should add this plane
-					print ("plan dict")
-					print(plane_dict)
+					#print ("plan dict")
+					#print(plane_dict)
 					planes += 1
 					# Send to publisher
 					publish_flight(plane_dict)
 				else:
 					ignored_planes += 1
 
-		#local_planes_json = json.dumps(local_planes)
 		print("Found " + str(planes) + " in region and ignored " + str(ignored_planes))
 
 	return planes
@@ -174,7 +158,6 @@ def getSystemFlights(api_nologin):
 def getOwnFlights(api):
 
 	# Overall code
-	#my_states = api.get_my_states()
 	my_states = opensky_api(ownStates)
 	local_planes = process_local_flights(my_states)
 
