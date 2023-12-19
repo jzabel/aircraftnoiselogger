@@ -60,10 +60,14 @@ It's recommended that you have some experience with Raspberry Pi and a basic und
 
 **Hardware**
 
-- Raspberry Pi Zero 2 W or similar
-- Micro SD card (16GB minimum, 32GB recommended)
+- [Raspberry Pi Zero 2 W](https://www.amazon.com/Raspberry-Zero-Bluetooth-RPi-2W/dp/B09LH5SBPS) or similar 
+- Micro SD card ([16GB](https://www.amazon.com/SanDisk-Ultra-SDSQUNS-016G-GN3MN-UHS-I-microSDHC/dp/B074B4P7KD/ref=sr_1_4) minimum, [32GB](https://www.amazon.com/SanDisk-micro-Memory-Card-Tablets/dp/B013TMNKAW/ref=sr_1_11) recommended)
 - 5 volt 2 amp power supply
-- [I2C Decibel Sound Level Meter Module](https://pcbartists.com/product/i2c-decibel-sound-level-meter-module/)
+  - E.g. [Power supply AC to USB-A](https://www.amazon.com/ICV-USB-Wall-Charger-Lightweight/dp/B0119BUJDQ/ref=sr_1_19)
+  - E.g. [10 feet USB-A to Micro-USB cable](https://www.amazon.com/Amazon-Basics-Charging-Transfer-Gold-Plated/dp/B071S5NTDR/ref=sr_1_3), select length to suit your installation location
+- [I2C Decibel Sound Level Meter Module](https://pcbartists.com/product/i2c-decibel-sound-level-meter-module/), with options:
+  - Connector: JST-XH Vertical
+  - Type: Regular
 - 3D printed [Enclosure](Enclosure/README.md)
 
 **Software**
