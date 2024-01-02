@@ -108,7 +108,7 @@ Make sure to set up a virtual environment where `<your-env>` is an environment v
 
 ```
 sudo pip3 install virtualenv
-virtualenv <your-env>
+virtualenv --system-site-packages <your-env>
 source <your-env>/bin/activate
 ```
 
@@ -116,13 +116,13 @@ _example:_
     
 ```
 sudo pip3 install virtualenv
-virtualenv aircraft-logger-env 
+virtualenv --system-site-packages aircraft-logger-env 
 source aircraft-logger-env/bin/activate
 ```
 
 
 * Install required libraries run `sudo pip3 install -r requirements.txt`.
-* Change the location of your google auth.json key in run_db_monitoring.py 
+* Contact Jeff for the correct google auth.json key. Transfer the file to the folder that contains run_db_monitoring.py 
 
 #### Adjust your configuration file
 The config.json file holds the key values for where to find Google publishing credentials, PubSub topic and projectID, and sets the name of the reporting station. Modify this file to point to the location of your credential file, adjust if necessary the pub/sub topic and project, and set the correct reportingStation name to identify the particular logger.
