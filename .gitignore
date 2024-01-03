@@ -1,3 +1,4 @@
 superior-noise-loggers-*.json
 opensky-api/
 .DS_Store
+/utils/.env

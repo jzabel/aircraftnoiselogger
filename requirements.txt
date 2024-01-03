@@ -1,6 +1,9 @@
 google-api-core==2.11.1
 google-cloud-pubsub==2.18.1
-grpcio==1.56.2
+#grpcio==1.56.2  # This release continued to throw errors during installation
+grpcio==1.60.0
 grpcio-status==1.56.2
 google-auth==2.23.0
 smbus==1.1.post2
+googlemaps==4.10.0
+python-dotenv==1.0.0
